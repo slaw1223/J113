@@ -1,0 +1,16 @@
+<%- include('../partials/header') -%>
+
+<main>
+    <section>
+    <h1>Edytuj post</h1>
+
+    <form action="/edit/<%= post._id %>" method="POST">
+        <input type="text" name="title" id="title" required value="<%= post.title %>">
+        <textarea name="content" id="content" ><%= post.content %></textarea>
+        <p>Spoiler: <input type="checkbox" name="spoiler" id="spoiler" <%= post.spoiler ? 'checked' : '' %>></p>
+        <button type="submit">Zapisz</button>
+    </form>
+    </section>
+</main>
+
+<%- include('../partials/footer') -%>

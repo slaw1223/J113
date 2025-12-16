@@ -1,0 +1,15 @@
+<%- include('../partials/header') -%>
+
+<main>
+    <article>
+        <h1><%= post.title %></h1>
+        <% if(!post.spoiler){ %>
+            <p><%= post.content %></p>
+        <% } else { %>
+            <p><b style="color: red;">SPOILER</b></p>
+            <p><%= post.content %></p>
+        <% } %>
+    </article>
+</main>
+
+<%- include('../partials/footer') -%>

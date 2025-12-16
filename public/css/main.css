@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+}
+header, footer{
+    text-align: center;
+    width: 100%;
+    height: 25%;
+    background-color: cyan;
+}
+header * {
+    padding: 5px;
+}
+section{
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    height: 75%;
+    background-color: lightgray;
+}
+section li, section form {
+    padding: 10px;
+    list-style: none;
+}
