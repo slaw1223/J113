@@ -21,3 +21,13 @@ section li, section form {
     padding: 10px;
     list-style: none;
 }
+nav{
+    width: 100%;
+    height: 10%;
+    float: left;
+}
+.routes, .login {
+    width: 50%;
+    float: left;
+}
+
