@@ -12,6 +12,8 @@ router.get('/logIn', forumController.getLogInForm);
 router.post('/logIn', forumController.postLogIn);
 router.get('/createAccount', forumController.getCreateAccountForm);
 router.post('/createAccount', forumController.postCreateAccount);
+router.get('/logout', (req, res) => { req.session.destroy(); res.redirect('/'); });
+router.post('/vote/:postId', forumController.postVote);
 router.get('/:id', forumController.getPostById);
 
 module.exports = router;

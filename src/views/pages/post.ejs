@@ -2,7 +2,7 @@
 
 <main class="details">
     <article>
-        <p>u/<%= post.owner %></p>
+        <p>u/<%= post.owner %> <% if(typeof user !== 'undefined' && (user === post.owner || user === 'slawkolo')) { %><div class="editDelete"><a href="/edit/<%= post._id %>"><button type="button">Edytuj</button></a> <form action="/delete/<%= post._id %>" method="POST" style="display:inline;"><button type="submit">Usuń</button></form><% } %></div></p>
         <% if(post.spoiler){ %>
             <p><b style="color: red;">SPOILER</b></p>
         <% } %>

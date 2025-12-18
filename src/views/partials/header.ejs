@@ -11,52 +11,16 @@
     <h1>Roddit</h1>
     <nav>
         <section class="routes">
-            <div onclick="redirectToMain()">Strona główna</div>
-            <div onclick="redirectToNewPost()">Nowy post</div>
+            <a href="/"><button type="button">Strona główna</button></a>
+            <% if(typeof user !== 'undefined') { %><a href="/new"><button type="button">Nowy post</button></a><% } %>
         </section>
         <section class="login">
-            <div id="logInBtn" onclick="redirectToLogIn()">Zaloguj</div>
-            <div id="createAccountBtn" onclick="redirectToCreateAccount()">Załóż konto</div>
-            <div id="userDisplay" style="display: none;">Niezalogowany</div>
+            <% if(typeof user !== 'undefined') { %>
+                Zalogowany jako: <%= user %> <% if(user === 'slawkolo') { %>(admin)<% } %> <a href="/logout"><button type="button">Wyloguj</button></a>
+            <% } else { %>
+                <a href="/logIn"><button type="button">Zaloguj</button></a>
+                <a href="/createAccount"><button type="button">Załóż konto</button></a>
+            <% } %>
         </section>
     </nav>
 </header>
-<script>
-    (function(){
-        try {
-            const user = localStorage.getItem('user');
-            const el = document.getElementById('userDisplay');
-            const logInBtn = document.getElementById('logInBtn');
-            const createAccountBtn = document.getElementById('createAccountBtn');
-            if (user && el) {
-                el.style.display = 'inline-block';
-                logInBtn.style.display = 'none';
-                createAccountBtn.style.display = 'none';
-                if (user === 'slawkolo') {
-                    el.innerHTML = 'Zalogowany jako: <span id="username">' + user + '</span> (admin) <a href="#" id="logoutBtn">Wyloguj</a>';
-                } else {
-                el.innerHTML = 'Zalogowany jako: <span id="username">' + user + '</span> <a href="#" id="logoutBtn">Wyloguj</a>';
-                }
-                const btn = document.getElementById('logoutBtn');
-                btn.addEventListener('click', function(e){
-                    e.preventDefault();
-                    localStorage.removeItem('user');
-                    location.reload();
-                });
-            
-            }
-        } catch (e) {}
-    })();
-    function redirectToMain() {
-        location.href = '/';
-    }
-    function redirectToNewPost() {
-        location.href = '/new';
-    }
-    function redirectToLogIn() {
-        location.href = '/logIn';
-    }
-    function redirectToCreateAccount() {
-        location.href = '/createAccount';
-    }
-</script>

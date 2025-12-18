@@ -4,38 +4,13 @@
     <section>
     <h1>Edytuj post</h1>
 
-    <form id="editForm" data-owner="<%= post.owner %>" data-id="<%= post._id %>">
+    <form action="/edit/<%= post._id %>" method="POST" class="newPostForm">
         <input type="text" name="title" id="title" required value="<%= post.title %>">
         <textarea name="content" id="content" ><%= post.content %></textarea>
         <p>Spoiler: <input type="checkbox" name="spoiler" id="spoiler" <%= post.spoiler ? 'checked' : '' %>></p>
+
         <button type="submit">Zapisz</button>
     </form>
-    <script>
-        (function(){
-            const form = document.getElementById('editForm');
-            const owner = form.dataset.owner;
-            const id = form.dataset.id;
-            const current = localStorage.getItem('user');
-            const isAdmin = current === 'slawkolo';
-            if (!current || (!isAdmin && current !== owner)) {
-                form.querySelector('button[type="submit"]').style.display = 'none';
-                const warn = document.createElement('p'); warn.textContent = 'Nie możesz edytować — nie jesteś właścicielem lub nie jesteś zalogowany';
-                form.insertBefore(warn, form.firstChild);
-                return;
-            }
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const title = document.getElementById('title').value;
-                const content = document.getElementById('content').value;
-                const spoiler = document.getElementById('spoiler').checked;
-                try {
-                    const res = await fetch('/edit/' + id, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ title, content, spoiler, owner: current }) });
-                    const data = await res.json();
-                    if (data.success) location.href = '/'; else alert(data.message || 'Błąd');
-                } catch (err) { alert('Błąd połączenia'); }
-            });
-        })();
-    </script>
     </section>
 </main>
 
