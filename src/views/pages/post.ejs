@@ -1,14 +1,13 @@
 <%- include('../partials/header') -%>
 
-<main>
+<main class="details">
     <article>
-        <h1><%= post.title %></h1>
-        <% if(!post.spoiler){ %>
-            <p><%= post.content %></p>
-        <% } else { %>
+        <p>u/<%= post.owner %></p>
+        <% if(post.spoiler){ %>
             <p><b style="color: red;">SPOILER</b></p>
-            <p><%= post.content %></p>
         <% } %>
+        <h1><%= post.title %></h1>
+        <p><%= post.content %></p>
     </article>
 </main>
 

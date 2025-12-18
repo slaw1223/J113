@@ -2,33 +2,74 @@
 
 <main>
     <section>
-        <form action="/" method="GET">
+        <form onsubmit="return false;">
             <label for="hideSpoilers">Ukryj spoilery</label>
             <input type="checkbox" name="hideSpoilers" id="hideSpoilers"/><br>
-            <button type="submit">Filtruj</button>
+           
         </form>
     </section>
-    <section>
-    <ul>
+    <section class="postsContainer">
         <% posts.forEach(post => { %>
-            <form action="delete/<%= post._id %>" method="POST" >
-            <li>
-                <p>
+            <section class="post-item<%= post.spoiler ? '-spoiler' : '' %>" data-spoiler="<%= post.spoiler %>" data-owner="<%= post.owner || '' %>" data-id="<%= post._id %>" onclick="redirectToPost('<%= post._id %>')">
                     <% if(!post.spoiler){ %>
-                        <a href="<%= post._id %>"><b><%= post.title %></b></a>
-                        <%= post.content %>
-                        <a href="edit/<%= post._id %>"><button type="button">Edytuj</button></a> <button type="submit">Usuń</button>
+                        <p>u/<%= post.owner %></p>                        
+                        <h2><%= post.title %></h2>
+                        <p><%= post.content %></p>
+                        <a href="/edit/<%= post._id %>" class="editLink"><button type="button">Edytuj</button></a> <button type="button" class="deleteBtn">Usuń</button>
                     <% } else { %>
-                        <a href="<%= post._id %>"><b><%= post.title %></b></a>
-                        <b style="color: red;">SPOILER</b>
-                        <a href="edit/<%= post._id %>"><button type="button">Edytuj</button></a> <button type="submit">Usuń</button>
-                    <% } %>
-                </p>
-            </li>
-        </form>
+                        <p>u/<%= post.owner %></p>
+                        <p style="color: red;">SPOILER</p>
+                        <h2><%= post.title %></h2>
+                        <a href="/edit/<%= post._id %>" class="editLink"><button type="button">Edytuj</button></a> <button type="button" class="deleteBtn">Usuń</button>
+                    <% } %>    
+            </section>
         <% }) %>
-    </ul>
     </section>
 </main>
+
+<script>
+    (function () {
+        const chk = document.getElementById('hideSpoilers');
+        function apply() {
+            const hide = chk.checked;
+            document.querySelectorAll('.post-item-spoiler').forEach(el => {
+                if (hide) el.classList.add('hidden'); else el.classList.remove('hidden');
+            });
+            try { localStorage.setItem('hideSpoilers', hide ? '1' : '0'); } catch (e) {}
+        }
+        try {
+            if (localStorage.getItem('hideSpoilers') === '1') chk.checked = true;
+        } catch (e) {}
+        chk.addEventListener('change', apply);
+        apply();
+    })();
+    (function(){
+        const current = localStorage.getItem('user');
+        const isAdmin = current === 'slawkolo';
+        document.querySelectorAll('.post-item').forEach(li => {
+            const owner = li.dataset.owner || '';
+            const edit = li.querySelector('.editLink');
+            const delBtn = li.querySelector('.deleteBtn');
+            if (!current || (!isAdmin && current !== owner)) {
+                if (edit) edit.style.display = 'none';
+                if (delBtn) delBtn.style.display = 'none';
+            }
+            if (delBtn) {
+                delBtn.addEventListener('click', async () => {
+                    if (!current) return alert('Musisz być zalogowany by usuwać posty');
+                    const id = li.dataset.id;
+                    try {
+                        const res = await fetch('/delete/' + id, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ user: current }) });
+                        const data = await res.json();
+                        if (data.success) location.reload(); else alert(data.message || 'Nie można usunąć');
+                    } catch (e) { alert('Błąd połączenia'); }
+                });
+            }
+        });
+    })();
+    function redirectToPost(id) {
+        location.href = '/' + id;
+    }
+</script>
 
 <%- include('../partials/footer') -%>

@@ -3,20 +3,60 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Forum</title>
+        <title>Roddit</title>
         <link rel="stylesheet" href="/css/main.css">
     </head>
 <body>
 <header>
-    <h1>Forum</h1>
+    <h1>Roddit</h1>
     <nav>
-        <div class="routes">
-            <a href="/">Strona główna</a>
-            <a href="/new">Nowy post</a>
-        </div>
-        <div class="login">
-            <a href="/logIn">Zaloguj</a>
-            <a href="/createAccount">Załóż konto</a>
-        </div>
+        <section class="routes">
+            <div onclick="redirectToMain()">Strona główna</div>
+            <div onclick="redirectToNewPost()">Nowy post</div>
+        </section>
+        <section class="login">
+            <div id="logInBtn" onclick="redirectToLogIn()">Zaloguj</div>
+            <div id="createAccountBtn" onclick="redirectToCreateAccount()">Załóż konto</div>
+            <div id="userDisplay" style="display: none;">Niezalogowany</div>
+        </section>
     </nav>
 </header>
+<script>
+    (function(){
+        try {
+            const user = localStorage.getItem('user');
+            const el = document.getElementById('userDisplay');
+            const logInBtn = document.getElementById('logInBtn');
+            const createAccountBtn = document.getElementById('createAccountBtn');
+            if (user && el) {
+                el.style.display = 'inline-block';
+                logInBtn.style.display = 'none';
+                createAccountBtn.style.display = 'none';
+                if (user === 'slawkolo') {
+                    el.innerHTML = 'Zalogowany jako: <span id="username">' + user + '</span> (admin) <a href="#" id="logoutBtn">Wyloguj</a>';
+                } else {
+                el.innerHTML = 'Zalogowany jako: <span id="username">' + user + '</span> <a href="#" id="logoutBtn">Wyloguj</a>';
+                }
+                const btn = document.getElementById('logoutBtn');
+                btn.addEventListener('click', function(e){
+                    e.preventDefault();
+                    localStorage.removeItem('user');
+                    location.reload();
+                });
+            
+            }
+        } catch (e) {}
+    })();
+    function redirectToMain() {
+        location.href = '/';
+    }
+    function redirectToNewPost() {
+        location.href = '/new';
+    }
+    function redirectToLogIn() {
+        location.href = '/logIn';
+    }
+    function redirectToCreateAccount() {
+        location.href = '/createAccount';
+    }
+</script>

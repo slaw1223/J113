@@ -9,30 +9,27 @@ async function getPostById(id) {
     const db = getDB();
     return await db.collection('posts').findOne({_id: new ObjectId(id)});    
 }
-async function toggleSpoiler(spoiler) {
-    const db = getDB();
-    await db.collection('spoilers').updateOne(
-        {$set: {spoiler}}
-    );
-}
-async function addPost(title, content, spoiler) {
+
+async function addPost(title, content, spoiler, owner) {
     const db = getDB();
     await db.collection('posts').insertOne({
         title,
         content,
         spoiler,
+        owner: owner || null,
         createdAt: new Date()
     });
 }
-async function updatePost(id, title, content, spoiler) {
+async function updatePost(id, title, content, spoiler, owner) {
     const db = getDB();
-    await db.collection('posts').updateOne(
-        {_id: new ObjectId(id)},
-        {$set: {title, content, spoiler}}
-    );
+    const filter = owner ? {_id: new ObjectId(id), owner} : {_id: new ObjectId(id)};
+    const res = await db.collection('posts').updateOne(filter, {$set: {title, content, spoiler}});
+    return res.modifiedCount;
 }
-async function deletePost(id) {
+async function deletePost(id, owner) {
     const db = getDB();
-    await db.collection('posts').deleteOne({_id: new ObjectId(id)});
+    const filter = owner ? {_id: new ObjectId(id), owner} : {_id: new ObjectId(id)};
+    const res = await db.collection('posts').deleteOne(filter);
+    return res.deletedCount;
 }
-module.exports = { getAll, getPostById, addPost, updatePost, deletePost, toggleSpoiler };
+module.exports = { getAll, getPostById, addPost, updatePost, deletePost };

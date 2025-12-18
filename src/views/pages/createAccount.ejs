@@ -1,0 +1,41 @@
+<%- include('../partials/header') -%>
+
+<main>
+    <section>
+    <h1>Stwórz konto</h1>
+
+    <form id="createForm">
+        <input type="text" name="login" id="login" required placeholder="Login">
+        <input type="password" name="password" id="password" required placeholder="Hasło">
+        <button type="submit">Stwórz konto</button>
+    </form>
+    <script>
+        (function(){
+            const form = document.getElementById('createForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const login = document.getElementById('login').value;
+                const password = document.getElementById('password').value;
+                if(login.length < 3){
+                    return alert('Login musi mieć przynajmniej 3 znaki');
+                }else if(password.length < 6){
+                    return alert('Hasło musi mieć przynajmniej 6 znaków');
+                }else{
+                try {
+                    const res = await fetch('/createAccount', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ login, password }) });
+                    const data = await res.json();
+                    if (data.success) {
+                        localStorage.setItem('user', data.username);
+                        location.href = '/';
+                    } else {
+                        alert(data.message || 'Błąd tworzenia konta');
+                    }
+                } catch (err) { alert('Błąd połączenia'); }
+            }
+            });
+        })();
+    </script>
+    </section>
+</main>
+
+<%- include('../partials/footer') -%>

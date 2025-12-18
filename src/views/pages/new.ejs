@@ -3,13 +3,31 @@
 <main>
     <section>
     <h1>Dodaj nowy post</h1>
-    <form action="/new" method="POST">
+    <form id="newForm">
         <input type="text" name="title" id="title" required placeholder="Tytuł"><br>
         <textarea name="content" id="content" placeholder="Treść"></textarea><br>
         <p>Spoiler: <input type="checkbox" name="spoiler" id="spoiler"></p>
 
         <button type="submit">Zapisz</button>
     </form>
+    <script>
+        (function(){
+            const form = document.getElementById('newForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const user = localStorage.getItem('user');
+                if (!user) return alert('Musisz być zalogowany by tworzyć posty');
+                const title = document.getElementById('title').value;
+                const content = document.getElementById('content').value;
+                const spoiler = document.getElementById('spoiler').checked;
+                try {
+                    const res = await fetch('/new', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ title, content, spoiler, owner: user }) });
+                    const data = await res.json();
+                    if (data.success) location.href = '/'; else alert(data.message || 'Błąd');
+                } catch (err) { alert('Błąd połączenia'); }
+            });
+        })();
+    </script>
     </section>
 </main>
 
