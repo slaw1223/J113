@@ -1,8 +1,6 @@
-Tworzenie i uruchamianie bazy danych w dockerze.
+aTworzenie i uruchamianie bazy danych w dockerze.
 
 1.Otwórz aplikację "Docker Desktop".
-2.Otwórz terminal w prawym dolnym rogu aplikacji (taka ikonka ">_").
+2.Otwórz terminal dockera klikając ikonę ">_" w prawym dolnym rogu okna aplikacji.
 3.Wpisz komendę "docker run -d --name forumDB -p 27017:27017 mongo:6.0" i poczekaj na stworzenie kontenera.
-4.Znajdź zakładkę (po lewej stronie ekranu) "Containers" powinien tam się znajdować utworzony w kroku poprzednim kontener.
-5.Uruchom kontener klikając przycisk w krztałcie trójkąta skierowanego w prawo (po prawej stronie ekranu). 
-6.Kontener jest stworzony i uruchomiony.
+4.Kontener jest stworzony i uruchomiony.
