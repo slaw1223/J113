@@ -26,7 +26,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 
 2. Zainstaluj zależności:
    ```
-   npm install ejs, express, bcryptjs, express-session, mongodb
+   npm install ejs express bcryptjs express-session mongodb
    ```
 
 3. Stwórz i uruchom bazę danych <idź do pliku docker.txt>.
