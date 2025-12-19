@@ -20,7 +20,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 ### Kroki
 1. Sklonuj repozytorium
    ```
-   git clone <repository-url>
+   git clone https://github.com/slaw1223/J113.git
    cd j113
    ```
 
