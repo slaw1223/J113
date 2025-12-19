@@ -29,7 +29,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
    npm install ejs express bcryptjs express-session mongodb
    ```
 
-3. Stwórz i uruchom bazę danych <idź do pliku docker.txt>.
+3. Stwórz i uruchom bazę danych [idź do pliku docker.txt](docker.txt).
 
 4. Uruchom aplikację:
    ```
