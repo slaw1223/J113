@@ -4,12 +4,12 @@
 Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwania oraz głosowania. (totalnie NIE bazowane na reddicie)
 
 ## Funkcjonalności
-- Tworzenie kont i logowanie bazowane na sesjach
+- Tworzenie kont i logowanie
 - Tworzenie i przeglądanie postów
 - Edycja i usuwanie postów
 - Głosowanie na posty
 - Sortowanie i filtracja postów
-- Konto Admina mające dodatkowe uprawnienia
+- Konto Administratora mające dodatkowe uprawnienia
 
 ## Instalacja
 
@@ -21,6 +21,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 
 ### Kroki
 1.Otwórz "Wiersz polecenia" naciskając kombinację klawiszy Win + R i wpisując cmd.
+
 2.W Wierszu polecenia wpisz:
    ```
    mkdir <nazwa folderu>
@@ -38,7 +39,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
    ```
 5. Stwórz i uruchom bazę danych <[idź do pliku docker.txt](docker.txt)>.
 
-6. Uruchom aplikację poprzez wpisanie komendy:
+6. Uruchom aplikację poprzez wpisanie komendy w "Wierszu polecenia":
    ```
    npm start
    ```
