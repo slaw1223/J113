@@ -15,33 +15,34 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 
 ### Wymagania
 - Node.js (wersja 14 lub wyższa)
+- Docker
 - MongoDB
 
 ### Kroki
 1.Utwórz folder.
+
 2.Otwórz "Wiersz polecenia" i wpisz:
    ```
    cd <ścieżka do stworzonego folderu>
    ```
-2.Sklonuj repozytorium:
+3.Sklonuj repozytorium:
    ```
    git clone https://github.com/slaw1223/J113.git
    cd j113
    ```
 
-3. Zainstaluj zależności:
+4. Zainstaluj zależności:
    ```
    npm install ejs express bcryptjs express-session mongodb
    ```
+5. Stwórz i uruchom bazę danych <[idź do pliku docker.txt](docker.txt)>.
 
-4. Stwórz i uruchom bazę danych [idź do pliku docker.txt](docker.txt).
-
-5. Uruchom aplikację:
+6. Uruchom aplikację:
    ```
    npm start
    ```
 
-6. Otwórz przeglądarkę i wpisz `http://localhost:3000`
+7. Otwórz przeglądarkę i wpisz `http://localhost:3000`
 
 ## Używanie
 - Stwórz nowe konto lub zaloguj się na już istniejące
