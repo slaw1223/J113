@@ -5,13 +5,25 @@ const bcrypt = require('bcryptjs');
 async function getAll(req, res) {
     const posts = await forumModel.getAll();
     const user = req.session.user;
+    const sortBy = req.query.sortBy || 'newest';
+    
+    if (sortBy === 'newest') {
+        posts.sort((a, b) => b.createdAt - a.createdAt);
+    } else if (sortBy === 'oldest') {
+        posts.sort((a, b) => a.createdAt - b.createdAt);
+    }
+    else if (sortBy === 'mostVoted') {
+        posts.sort((a, b) => b.totalVotes - a.totalVotes);
+    }else if (sortBy === 'leastVoted') {
+        posts.sort((a, b) => a.totalVotes - b.totalVotes);
+    }
     if (user) {
         for (const post of posts) {
             post.userVote = await forumModel.getVoteForUser(post._id, user);
         }
     }
     const hideSpoilers = req.query.hideSpoilers === 'true';
-    res.render('pages/index', { posts, user, hideSpoilers });
+    res.render('pages/index', { posts, user, hideSpoilers, sortBy });
 }
 async function getPostById(req, res) {
     const user = req.session.user;

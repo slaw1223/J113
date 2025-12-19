@@ -3,6 +3,7 @@ const router = express.Router();
 const forumController = require('../controllers/forumController');
 
 router.get('/', forumController.getAll);
+
 router.get('/new', forumController.getAddForm);
 router.post('/new', forumController.postAdd);
 router.get('/edit/:id', forumController.getEditForm);

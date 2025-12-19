@@ -7,13 +7,13 @@
     "mongodb": "^7.0.0"
   },
   "name": "j113",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sławomir Kozłowski",
   "license": "ISC",
-  "description": ""
+  "description": "Aplikacja forum internetowego z funkcjami tworzenia postów oraz głosowania. (totalnie NIE bazowane na reddicie)"
 }

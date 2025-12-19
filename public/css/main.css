@@ -52,7 +52,7 @@ main{
 .postsContainer section:hover{
     background-color: cyan;
 }
-.post-item, .post-item-spoiler{
+.postItem, .postItemSpoiler{
     border: 1px solid black;
     margin: 5px;
     padding: 5px;
@@ -69,7 +69,7 @@ h2{
     align-items: center;
     justify-content: center;
 }
-.routes button, .login button{
+.routes button, .login button, .sort, #sortBy{
     margin: 10px;
     padding: 10px;
     text-decoration: none;
@@ -81,7 +81,7 @@ h2{
     display: inline-block;
     border: none;
 }
-.routes button:hover, .login button:hover{
+.routes button:hover, .login button:hover, .sort:hover, #sortBy:hover{
     background-color: cyan;
     cursor: pointer;
 }
@@ -108,7 +108,7 @@ img{
     width: 24px;
     height: 24px;
 }
-.vote-count {
+.voteCount {
     font-weight: bold;
     margin: 0 10px;
 }

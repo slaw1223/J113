@@ -2,14 +2,25 @@
 <main>
     <section>
         <p><a href="?hideSpoilers=true">Ukryj spoilery</a> | <a href="?hideSpoilers=false">Pokaż spoilery</a></p>
+        <form action="/" method="GET">
+            <label for="sortBy">Sortuj według:</label>
+            <select name="sortBy" id="sortBy">
+                <option value="newest" <%= sortBy === 'newest' ? 'selected' : '' %>>Najnowsze</option>
+                <option value="oldest" <%= sortBy === 'oldest' ? 'selected' : '' %>>Najstarsze</option>
+                <option value="mostVoted" <%= sortBy === 'mostVoted' ? 'selected' : '' %>>Najwięcej głosów</option>
+                <option value="leastVoted" <%= sortBy === 'leastVoted' ? 'selected' : '' %>>Najmniej głosów</option>
+            </select><br>
+            <button type="submit" class="sort">Sortuj</button>
+        </form>
     </section>
     <section class="postsContainer">
         <% posts.forEach(post => { %>
-            <section class="post-item<%= post.spoiler ? '-spoiler' : '' %>" data-spoiler="<%= post.spoiler %>" data-owner="<%= post.owner || '' %>" data-id="<%= post._id %>">
+            <% if (hideSpoilers && post.spoiler) return; %>
+            <section class="postItem">
                 <p>u/<%= post.owner %> <% if(typeof user !== 'undefined' && (user === post.owner || user === 'slawkolo')) { %><div class="editDelete"><a href="/edit/<%= post._id %>"><button type="button">Edytuj</button></a> <form action="/delete/<%= post._id %>" method="POST" style="display:inline;"><button type="submit">Usuń</button></form><% } %></div></p>
-                <div onclick="redirectToPost('<%= post._id %>')">
+                <div>
                     <h2><a href="/<%= post._id %>"><%= post.title %></a></h2>
-                    <% if(!post.spoiler || !hideSpoilers){ %>
+                    <% if(!post.spoiler){ %>
                         <p><%= post.content %></p>
                     <% } else { %>
                         <p style="color: red;">SPOILER</p>
@@ -24,7 +35,7 @@
                     <% } else { %>
                         <img src="/img/up.png" style="filter: grayscale(100%);">
                     <% } %>
-                    <span class="vote-count"><%= post.totalVotes || 0 %></span>
+                    <span class="voteCount"><%= post.totalVotes || 0 %></span>
                     <% if(typeof user !== 'undefined') { %>
                         <form action="/vote/<%= post._id %>" method="POST" style="display:inline;">
                             <input type="hidden" name="vote" value="-1">
