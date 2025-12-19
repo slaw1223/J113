@@ -61,9 +61,9 @@ j113/
 │   ├── routes/             # Router
 │   ├── views/              # Widoki
 │   └── data/               # Połączenie z bazą danych
-├── public/                 # Static assets (CSS, images)
-├── package.json            # Project dependencies and scripts
-└── README.md               # This file
+├── public/                 # Statyczne pliki (CSS, images)
+├── package.json            # Zależności projektu i skrypty
+└── README.md               # Ten plik
 ```
 
 ## Endpointy
