@@ -20,7 +20,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 - Git
 
 ### Kroki
-1.Otwórz "Wiersz polecenia" klikając Win + R i wpisując cmd.
+1.Otwórz "Wiersz polecenia" naciskając kombinację klawiszy Win + R i wpisując cmd.
 2.W Wierszu polecenia wpisz:
    ```
    mkdir <nazwa folderu>
@@ -38,16 +38,17 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
    ```
 5. Stwórz i uruchom bazę danych <[idź do pliku docker.txt](docker.txt)>.
 
-6. Uruchom aplikację:
+6. Uruchom aplikację poprzez wpisanie komendy:
    ```
    npm start
    ```
+   
+7. Otwórz przeglądarkę internetową i wpisz [http://localhost:3000](http://localhost:3000).
 
-7. Otwórz przeglądarkę i wpisz `http://localhost:3000`
-
-## Używanie
+## Użytkowanie
+- Użytkownik niezalogowany może tylko przeglądać posty
 - Stwórz nowe konto lub zaloguj się na już istniejące
-- Twórz posty, edytuj, usuwaj
+- Twórz, edytuj i usuwaj własne posty
 - Przeglądaj posty i głosuj na nie
 
 ## Technologie
