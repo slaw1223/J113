@@ -1,4 +1,4 @@
-aTworzenie i uruchamianie bazy danych w dockerze.
+Tworzenie i uruchamianie bazy danych w dockerze.
 
 1.Otwórz aplikację "Docker Desktop".
 2.Otwórz terminal dockera klikając ikonę ">_" w prawym dolnym rogu okna aplikacji.
