@@ -18,29 +18,34 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 - MongoDB
 
 ### Kroki
-1. Sklonuj repozytorium
+1.Utwórz folder.
+2.Otwórz "Wiersz polecenia" i wpisz:
+   ```
+   cd <ścieżka do stworzonego folderu>
+   ```
+2.Sklonuj repozytorium:
    ```
    git clone https://github.com/slaw1223/J113.git
    cd j113
    ```
 
-2. Zainstaluj zależności:
+3. Zainstaluj zależności:
    ```
    npm install ejs express bcryptjs express-session mongodb
    ```
 
-3. Stwórz i uruchom bazę danych [idź do pliku docker.txt](docker.txt).
+4. Stwórz i uruchom bazę danych [idź do pliku docker.txt](docker.txt).
 
-4. Uruchom aplikację:
+5. Uruchom aplikację:
    ```
    npm start
    ```
 
-5. Otwórz przeglądarkę i wpisz `http://localhost:3000`
+6. Otwórz przeglądarkę i wpisz `http://localhost:3000`
 
 ## Używanie
 - Stwórz nowe konto lub zaloguj się na już istniejące
-- Twórz posty
+- Twórz posty, edytuj, usuwaj
 - Przeglądaj posty i głosuj na nie
 
 ## Technologie
@@ -50,7 +55,7 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 - **Bezpieczeństwo**: express-session, bcryptjs
 - **Stylizacja**: CSS
 
-## Project Structure
+## Struktura projektu
 ```
 j113/
 ├── src/
@@ -67,7 +72,7 @@ j113/
 ```
 
 ## Endpointy
-- `GET /` -Strona główna
+- `GET /` - Strona główna
 - `GET /login` - Stwona logowania
 - `POST /login` - Obsługa logowania
 - `GET /createAccount` - Strona tworzenia konta
