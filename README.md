@@ -17,13 +17,14 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 - Node.js (wersja 14 lub wyższa)
 - Docker
 - MongoDB
+- Git
 
 ### Kroki
-1.Utwórz folder.
-
-2.Otwórz "Wiersz polecenia" i wpisz:
+1.Otwórz "Wiersz polecenia" klikając Win + R i wpisując cmd.
+2.W Wierszu polecenia wpisz:
    ```
-   cd <ścieżka do stworzonego folderu>
+   mkdir <nazwa folderu>
+   cd <nazwa folderu>
    ```
 3.Sklonuj repozytorium:
    ```
