@@ -20,20 +20,20 @@ Aplikacja forum internetowego z funkcjami tworzenia postów, edytowania, usuwani
 - Git
 
 ### Kroki
-1.Otwórz "Wiersz polecenia" naciskając kombinację klawiszy Win + R i wpisując cmd.
+1. Otwórz "Wiersz polecenia" naciskając kombinację klawiszy Win + R i wpisując cmd.
 
-2.W Wierszu polecenia wpisz:
+2. Stwórz folder wpisując w "Wierszu polecenia". Zamiast `<nazwa folderu>` wpisz dowolną nazwę jaką chcesz nazwać folder:
    ```
    mkdir <nazwa folderu>
    cd <nazwa folderu>
    ```
-3.Sklonuj repozytorium:
+3. Sklonuj repozytorium wpisując w "Wierszu polecenia":
    ```
    git clone https://github.com/slaw1223/J113.git
    cd j113
    ```
 
-4. Zainstaluj zależności:
+4. Zainstaluj zależności wpisując w "Wierszu polecenia":
    ```
    npm install ejs express bcryptjs express-session mongodb
    ```
